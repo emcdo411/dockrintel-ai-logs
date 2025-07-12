@@ -1,153 +1,107 @@
-# 🐳 DockrIntel: AI-Powered Docker Log Insights via PowerShell + RShiny
+🐳 DockrIntel: AI-Powered Docker Log Insights via PowerShell + RShiny
 
-> ✨ **Repo name suggestion:** `dockrintel-ai-logs`
+✨ Repo name suggestion: dockrintel-ai-logs
 
----
 
-## ✨ Summary
+✨ Summary
+This project showcases how Docker, PowerShell, and RShiny can be creatively combined to build an intelligent, self-generated log analysis system. Everything you see in this repo was ideated and built from scratch to push the limits of AI-driven system diagnostics — without manually writing most of the code.
+By imagining how AI could design its own monitoring system, I:
 
-This project showcases how **Docker**, **PowerShell**, and **RShiny** can be creatively combined to build an intelligent, self-generated log analysis system. Everything you see in this repo was **ideated and built from scratch** to push the limits of **AI-driven system diagnostics** — without manually writing most of the code.
+Created Docker containers that simulate real-time log streams
+Used PowerShell to manage container lifecycles and log export
+Built a responsive, intelligent RShiny dashboard that parses, filters, and summarizes logs like a human analyst would
 
-By imagining how **AI could design its own monitoring system**, I:
+In this latest version, the dashboard has been upgraded to handle even more complex log analysis! We’ve added new tools and packages to make it smarter and more reliable, especially for spotting unusual patterns and grouping similar log messages. For tech-savvy folks, this means we fixed some coding hiccups and improved how the app organizes logs using basic math techniques instead of fancier (but unavailable) tools. For everyone else, think of it like giving the app a bigger brain to catch problems faster and show them in a clearer table—now with white text on a dark background for easier reading. These changes make the app more stable and user-friendly, proving that even with limitations, we can still build something powerful using AI and open tools—all done by someone new to Docker and PowerShell!
 
-* Created Docker containers that simulate real-time log streams
-* Used PowerShell to manage container lifecycles and log export
-* Built a responsive, intelligent **RShiny dashboard** that parses, filters, and summarizes logs like a human analyst would
+🔗 Clickable Sections
 
-All of this was done by someone new to Docker and PowerShell, proving that modern development workflows can be demystified and democratized using AI and open tools.
+App Map (Flowchart)
 
----
+Tech Stack
 
-## 🔗 Clickable Sections
+RShiny Installed Packages
 
-* [App Map (Flowchart)](#-app-map-flowchart)
+What is Docker?
 
-* [Tech Stack](#-tech-stack)
+PowerShell + Docker Setup
 
-* [RShiny Installed Packages](#-rshiny-installed-packages)
+PowerShell Script
 
-* [What is Docker?](#-what-is-docker)
+Dockerfile
 
-* [PowerShell + Docker Setup](#-powershell--docker-setup)
+run.sh - Log Generator
 
-* [PowerShell Script](#-powershell-script)
+RShiny App Code
 
-* [Dockerfile](#-dockerfile)
+Fixing Encoding in Notepad++
 
-* [run.sh - Log Generator](#-runsh---log-generator)
+Why This Matters
 
-* [RShiny App Code](#-rshiny-app-code)
+Conclusion
 
-* [Fixing Encoding in Notepad++](#-fixing-encoding-in-notepad)
 
-* [Why This Matters](#-why-this-matters)
 
-* [Conclusion](#-conclusion)
+🛠️ Tech Stack
+  
 
----
+📊 RShiny Installed Packages
 
-## 🛠️ Tech Stack
 
-![Docker](https://img.shields.io/badge/Tool-Docker-blue?style=for-the-badge)
-![PowerShell](https://img.shields.io/badge/Tool-PowerShell-blue?style=for-the-badge)
-![R](https://img.shields.io/badge/Language-R-276DC3?style=for-the-badge)
-![RShiny](https://img.shields.io/badge/Framework-Shiny-00BFC4?style=for-the-badge)
-![Notepad++](https://img.shields.io/badge/Editor-Notepad++-brightgreen?style=for-the-badge)
-
----
-
-## 📊 RShiny Installed Packages
-
-![dplyr](https://img.shields.io/badge/Package-dplyr-success?style=for-the-badge)
-![stringr](https://img.shields.io/badge/Package-stringr-success?style=for-the-badge)
-![tidyr](https://img.shields.io/badge/Package-tidyr-success?style=for-the-badge)
-![ggplot2](https://img.shields.io/badge/Package-ggplot2-success?style=for-the-badge)
-![shinythemes](https://img.shields.io/badge/Package-shinythemes-success?style=for-the-badge)
-
----
-
-## 🚀 What is Docker?
-
-**Docker** is a container platform that lets you run lightweight, isolated environments for apps and services. Each container includes the app code and its dependencies — like a mini virtual machine.
-
+🚀 What is Docker?
+Docker is a container platform that lets you run lightweight, isolated environments for apps and services. Each container includes the app code and its dependencies — like a mini virtual machine.
 This project uses Docker to:
 
-* Simulate real-time system logs
-* Keep log generation isolated and reproducible
-* Interface cleanly with PowerShell and R
+Simulate real-time system logs
+Keep log generation isolated and reproducible
+Interface cleanly with PowerShell and R
 
-> Think of Docker containers as self-contained black boxes that you can turn on/off, inspect, and interact with — just like real system processes.
 
----
+Think of Docker containers as self-contained black boxes that you can turn on/off, inspect, and interact with — just like real system processes.
 
-## 🛋️ PowerShell + Docker Setup
 
-### Step 1: Install Docker Desktop
+🛋️ PowerShell + Docker Setup
+Step 1: Install Docker Desktop
 
-1. Download Docker from [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
-2. Follow the install instructions
-3. Launch Docker Desktop and ensure it's running
+Download Docker from https://www.docker.com/products/docker-desktop/
+Follow the install instructions
+Launch Docker Desktop and ensure it's running
 
-### Step 2: Create Working Directory
-
-```powershell
+Step 2: Create Working Directory
 mkdir docker-log-demo
 cd docker-log-demo
-```
 
----
 
-## 🗺️ App Map (Flowchart)
-
-```mermaid
+🗺️ App Map (Flowchart)
 graph TD
   A[Docker Container: Log Generator] --> B[PowerShell: Start Container + Export Logs]
   B --> C[Log File: web_logs.txt]
   C --> D[RShiny App: Upload + Parse Logs]
   D --> E[Dashboard: Filters + Visualization + AI Summary]
-```
 
----
 
-## 🔧 PowerShell Script
-
-```powershell
+🔧 PowerShell Script
 notepad run.sh   # Paste the bash code below and save
 notepad Dockerfile  # Paste Dockerfile contents below and save
-```
 
 Then build and run:
-
-```powershell
 docker build -t log-simulator .
 docker run -d --name demo-web -e APP_NAME=web-app log-simulator
 docker logs -f demo-web
-```
 
 Export logs:
-
-```powershell
 docker logs demo-web > web_logs.txt
-```
 
----
 
-## 📄 Dockerfile
-
-```Dockerfile
+📄 Dockerfile
 FROM alpine:latest
 
 COPY run.sh /run.sh
 RUN chmod +x /run.sh
 
 ENTRYPOINT ["/bin/sh", "/run.sh"]
-```
 
----
 
-## 📄 run.sh - Log Generator
-
-```bash
+📄 run.sh - Log Generator
 #!/bin/sh
 
 APP_NAME=${APP_NAME:-demo-app}
@@ -166,15 +120,10 @@ while true; do
   sleep 1
   i=$((i + 1))
 done
-```
 
----
 
-## 📄 RShiny App Code
-
-Full working app in [`app.R`](./app.R). You can also paste this in RStudio directly.
-
-````markdown
+📄 RShiny App Code
+Full working app in app.R. You can also paste this in RStudio directly.
 ```r
 # Open RStudio
 # File > New File > R Script > Paste this > Save as app.R
@@ -307,13 +256,9 @@ server <- function(input, output) {
 
 shinyApp(ui = ui, server = server)
 ```
-````
 
-# File > New File > R Script > Paste this > Save as app.R
-
-# Click 'Run App'
-
-```
+File > New File > R Script > Paste this > Save as app.R
+Click 'Run App'
 
 [Click here to view app.R code](#)
 
@@ -355,4 +300,3 @@ Built from scratch. Powered by learning. Inspired by possibility.
 
 > Made with Docker, PowerShell, RShiny, and a lot of curiosity. ✨
 
-```
